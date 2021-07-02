@@ -16,34 +16,12 @@ import numpy as np
 import plotly.express as px
 import plotly.io as pio
 
-"""
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-import plotly.graph_objects as go
-"""
-
-
-"""TRYING TO FIGURE OUT HOW TO SAVE INPUT AS VARIABLE FOR VALUATION AND PLOTTING
-
+def pct_change(df,ticker):
+    """read in dataframe to be modified and tickers to perfrom percent chanage on within dataframe"""
+    df[f'{ticker}_pct_change']=''
+    df['f{ticker}_pct_change'] = (df[f'{ticker}_close']-df[f'{ticker}_close'].iloc[0])/df[f'{ticker}_close'].iloc[0]
+    return df
     
-def generate_table(dataframe, max_rows=10):
-    return html.Table([
-        html.Thead(
-            html.Tr([html.Th(col) for col in dataframe.columns])
-        ),
-        html.Tbody([
-            html.Tr([
-                html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
-            ]) for i in range(min(len(dataframe), max_rows))
-        ])
-    ])
-
-
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-server = app.server
-"""
 
 finviz=FinViz()
 dcf = DCF()
@@ -80,11 +58,12 @@ while done is False:
     # marge indices df on ticker df
     joint_df = reduce(lambda  left,right: pd.merge(left,right,on=['date'],
                                             how='inner'), data_frames)  # pd.merge(hist[['date',f'{ticker}_close']],spy_df[['date','SPY_close'],],how='inner',on='date')
-    joint_df[f'{ticker}_pct_change'] = joint_df[f'{ticker}_close'].pct_change().cumsum()
-    joint_df['QQQ_pct_change'] = joint_df['QQQ_close'].pct_change().cumsum()
-    joint_df['DIA_pct_change'] = joint_df['DIA_close'].pct_change().cumsum()
-    joint_df['SPY_pct_change'] = joint_df['SPY_close'].pct_change().cumsum()
+    #joint_df[f'{ticker}_pct_change'] = joint_df[f'{ticker}_close'].pct_change().cumsum()
     
+    joint_df[f'{ticker}_pct_change'] = (joint_df[f'{ticker}_close']-joint_df[f'{ticker}_close'].iloc[0])/joint_df[f'{ticker}_close'].iloc[0]
+    joint_df['SPY_pct_change'] = (joint_df['SPY_close']-joint_df['SPY_close'].iloc[0])/joint_df['SPY_close'].iloc[0]
+    joint_df['QQQ_pct_change'] = (joint_df['QQQ_close']-joint_df['QQQ_close'].iloc[0])/joint_df['QQQ_close'].iloc[0]
+    joint_df['DIA_pct_change'] = (joint_df['DIA_close']-joint_df['DIA_close'].iloc[0])/joint_df['DIA_close'].iloc[0]
     
     #,plot ohlc and historical figs
     make_ohlc(ticker,ticker_hist)
