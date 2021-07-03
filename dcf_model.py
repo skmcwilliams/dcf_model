@@ -134,7 +134,7 @@ while done is False:
     
     # CALL FINANCIAL MODEL PREP DCF VALUATION
     fmp_dcf = dcf.get_fmp_dcf(ticker,key)
-    print(f"Estimated {ticker} Valuation Results:\Calculated Discounted Cash Flow Value: {round(intrinsic_value,2)}")
+    print(f"Estimated {ticker} Valuation Results:\nCalculated Discounted Cash Flow Value: {round(intrinsic_value,2)}")
     print(f"Current Price: {round(current_price,2)}")
     print(f"Margin: {round((1-current_price/intrinsic_value)*100,2)}%")
     
