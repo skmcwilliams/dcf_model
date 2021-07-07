@@ -1,5 +1,5 @@
 # dcf_model
-### Run model by running code and typing the ticker of desired stock for which to perform DCF valuation when requested. Then press enter.
+### Run model by running dcf_model.py and typing the ticker of desired stock for which to perform DCF valuation when requested. Then press enter.
 #### The program will show the following:
   - Historical price chart with 200 and 50-day moving averages
   - Ticker's price movement compared to SPY, DIA, and QQQ from 5 years back. Time period can be adjusted with a date rangeslider or buttons
