@@ -5,14 +5,12 @@ Created on Sat Mar  6 08:15:10 2021
 
 @author: skm
 """
-#import sys  
-#sys.path.append('/Users/skm/Documents/Code/Python/Investing')
+
 from utils import DCF, FinViz, get_10_year, get_historical_data,make_ohlc,make_comp_chart
 from yahooquery import Ticker
 import pandas as pd
 from functools import reduce
 import numpy as np
-#from yahoofinancials import YahooFinancials as 
 import plotly.express as px
 import plotly.io as pio
 
