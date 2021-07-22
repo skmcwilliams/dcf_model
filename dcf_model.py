@@ -97,7 +97,17 @@ while done is False:
         cash_and_ST_investments = balance_sheet.iloc[-1]['CashAndCashEquivalents']
     except KeyError:
         cash_and_ST_investments = balance_sheet.iloc[-1]['CashCashEquivalentsAndShortTermInvestments']
+        while pd.isnull(cash_and_ST_investments):
+            for i in range(1,len(balance_sheet)):
+                cash_and_ST_investments = balance_sheet.iloc[-i]['CashCashEquivalentsAndShortTermInvestments']
     
+    while pd.isnull(cash_and_ST_investments):
+        for i in range(1,len(balance_sheet)):
+            cash_and_ST_investments = balance_sheet.iloc[-i]['CashAndCashEquivalents']
+            
+        
+        
+        
     cash_flow = cash_flow_df.iloc[-1]['FreeCashFlow']
    
     try:
